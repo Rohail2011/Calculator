@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Web Addicted - Function Calculator</title>
+  <meta charset="utf-8">
+  <meta name="description" content="This is a simple javascript calculator built with HTML, CSS, and vanilla javascript.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="spacer"></div>
+  <div id ="calc">
+    <form>
+      <input type="text" id="calc-display" disabled>
+      <br>
+      <input type="button" value="C" class="keys" onclick="toScreen('C')">
+      <input type="button" value="÷" class="keys" onclick="toScreen('/')">
+      <input type="button" value="x" class="keys" onclick="toScreen('*')">
+      <input type="button" value="SQR" class="keys" onclick="sqr()">
+      <br>
+
+      <input type="button" value="7" class="keys" onclick="toScreen('7')">
+      <input type="button" value="8" class="keys" onclick="toScreen('8')">
+      <input type="button" value="9" class="keys" onclick="toScreen('9')">
+      <input type="button" value="-" class="keys" onclick="toScreen('-')">
+      <br>
+
+      <input type="button" value="4" class="keys" onclick="toScreen('4')">
+      <input type="button" value="5" class="keys" onclick="toScreen('5')">
+      <input type="button" value="6" class="keys" onclick="toScreen('6')">
+      <input type="button" value="+" class="keys" onclick="toScreen('+')">
+      <br>
+
+      <input type="button" value="1" class="keys key2" onclick="toScreen('1')">
+      <input type="button" value="2" class="keys key2" onclick="toScreen('2')">
+      <input type="button" value="3" class="keys key2" onclick="toScreen('3')">
+      <input type="button" value="=" id="equals" class="set" onclick="answer()">
+      <br>
+
+
+      <input type="button" value="%" class="keys key3" class="bottom" onclick="toScreen('%')">
+      <input type="button" value="0" class="keys key3" class="bottom" onclick="toScreen('0')">
+      <input type="button" value="." class="keys key3" class="bottom" onclick="toScreen('.')">
+     
+    </form>
+  </div>
+  <div class="spacer"></div>
+  <script>
+    var box = document.getElementById("calc-display");
+
+function toScreen(x){
+  box.value+=x;
+  if(x==='C'){
+    box.value='';
+  }
+}
+
+function answer(){
+  x=box.value;
+  x=eval(x);
+  box.value=x;
+}
+
+function sqr(){
+  x=box.value;
+  x=eval(x*x);
+  box.value=x;
+}
+
+function backSpace(){
+  var num = box.value;
+  var len = num.length-1;
+  var newNum = num.substring(0,len);
+  box.value = newNum;
+}
+
+</script>
+   <style>
+
+html, body {
+  width: 100%;
+  height:100%;
+}
+
+body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
+    width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+/*===============================
+ Calculator Structure 
+ =============*/
+ 
+#calc {
+  width: 350px;
+  height: 450px;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 20px auto;
+  background: #d6c9f2;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+#calc-display {
+  margin-bottom: 20px;
+  background: #c2dfe3;
+  box-shadow: inset -5px 5px 4px #abc4c8, inset 5px -5px 4px #d9fafe;
+  height: 35px;
+  width: 300px;
+  padding: 5px;
+  outline: none;
+  border-radius: 10px;
+  text-align: right;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #1d282b;
+  font-weight: bolder;
+  font-size: 18px;
+  border: none;
+}
+
+.keys {
+  cursor: pointer;
+  outline: none;
+  color: #e0fbfc;
+  background: #253237;
+  width: 50px;
+  height: 50px;
+  margin: 12px;
+  font-weight: bold;
+  border: none;
+  font-size: 18px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+  rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.key2 {
+  position: relative;
+  top: -30px;
+  left: -8px;
+}
+.key3 {
+  position: relative;
+  top: -60px;
+  left: -40px;
+}
+
+.keys:active {
+  border: none;
+  background: #253237;
+  box-shadow: inset -8px 8px 16px #1d282b, inset 8px -8px 16px #2d3d43;
+  color: #e0fbfc;
+}
+
+.bottom {
+  position: relative;
+  left: -2px;
+}
+
+#equals {
+  cursor: pointer;
+  outline: none;
+  color: #000;
+  width: 50px;
+  height: 135px;
+  border: none;
+  margin-right: 10px;
+  color: #e0fbfc;
+  background: #253237;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+  rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  border-radius: 10px;
+}
+
+#equals:active {
+  border: none;
+  background: #253237;
+  box-shadow: inset -8px 8px 16px #1d282b, inset 8px -8px 16px #2d3d43;
+  color: #e0fbfc;
+}
+
+.set {
+  position: relative;
+  top: 5px;
+  left: 5px;
+}
+
+div > h3 {
+  color: #aaa;
+  opacity: 0.56;
+  font-family: sans-serif;
+  letter-spacing: 3px;
+  text-shadow: 1px 4px #111;
+}
+
+.spacer {
+  padding: 50px;
+}
+
+   </style>
+   
+</body>
+</html>
+
